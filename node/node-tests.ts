@@ -13,6 +13,7 @@ import net = require("net");
 import dgram = require("dgram");
 import querystring = require('querystring');
 import path = require("path");
+import https = require("https");
 
 assert(1 + 1 - 2 === 0, "The universe isn't how it should.");
 
@@ -201,6 +202,23 @@ module http_tests {
 	});
 	
 	var agent: http.Agent = http.globalAgent;
+}
+
+////////////////////////////////////////////////////
+/// Https tests : http://nodejs.org/api/https.html
+////////////////////////////////////////////////////
+module https_tests {
+    // Regression test for https.get
+    // See: https://nodejs.org/api/https.html#https_https_get_options_callback
+    https.get('https://encrypted.google.com/', (res) => {
+  
+    res.on('data', (d: Buffer) => {
+        process.stdout.write(d);
+    });
+
+    }).on('error', (e: Buffer) => {
+        console.error(e);
+    });
 }
 
 ////////////////////////////////////////////////////

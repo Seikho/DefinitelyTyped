@@ -701,8 +701,8 @@ declare module "https" {
     };
     export interface Server extends tls.Server { }
     export function createServer(options: ServerOptions, requestListener?: Function): Server;
-    export function request(options: RequestOptions, callback?: (res: http.IncomingMessage) =>void ): http.ClientRequest;
-    export function get(options: RequestOptions, callback?: (res: http.IncomingMessage) =>void ): http.ClientRequest;
+    export function request(options: RequestOptions | string, callback?: (res: http.IncomingMessage) =>void ): http.ClientRequest;
+    export function get(options: RequestOptions | string, callback?: (res: http.IncomingMessage) =>void ): http.ClientRequest;
     export var globalAgent: Agent;
 }
 
